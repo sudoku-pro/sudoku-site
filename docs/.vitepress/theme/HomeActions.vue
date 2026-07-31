@@ -10,7 +10,7 @@ import { withBase } from 'vitepress'
       aria-label="Sudoku installation guide"
     >
       <img
-        :src="withBase('/badges/Mac-App-Store.png')"
+        :src="withBase('/badges/appstore.png')"
         alt="Download on the App Store"
         class="store-badge"
         width="156"
