@@ -151,7 +151,7 @@
 
 .store-badge {
   display: block;
-  height: 46px;
+  height: 60px;
   width: auto;
 }
 
@@ -374,7 +374,7 @@ details.faq-item .faq-answer {
   }
 
   .store-badge {
-    height: 40px;
+    height: 60px;
   }
 }
 

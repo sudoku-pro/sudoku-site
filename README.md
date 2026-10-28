@@ -67,6 +67,44 @@ pnpm docs:build
 pnpm docs:preview
 ```
 
+## Localization (i18n)
+
+The site is fully localized. English is the **root** locale (served at `/`), and
+six additional languages live under their own path segment:
+
+| Locale | Path | File directory |
+|--------|------|----------------|
+| English | `/` | `docs/` (root) |
+| Español | `/es/` | `docs/es/` |
+| 简体中文 | `/zh-CN/` | `docs/zh-CN/` |
+| 繁體中文 | `/zh-TW/` | `docs/zh-TW/` |
+| 日本語 | `/ja/` | `docs/ja/` |
+| Deutsch | `/de/` | `docs/de/` |
+| Français | `/fr/` | `docs/fr/` |
+
+How it works:
+
+- **Chrome labels** (nav / sidebar / footer / outline / markdown containers) are
+  defined per locale in `docs/.vitepress/config.ts` (`STR` and `MD` tables).
+  Internal links are auto-prefixed with the locale segment by `tc()`.
+- **Page bodies** are translated `.md` files mirrored under `docs/<lang>/`.
+  Relative `.md` links stay relative; absolute links must carry the prefix
+  (e.g. `/fr/guide/privacy`).
+- **Home page copy** (hero text, section titles, testimonials, FAQ, CTA, footer)
+  comes from the `home:` block in each `docs/<lang>/index.md` frontmatter.
+  Missing keys fall back to the English defaults in `AdvancedHome.vue`, and
+  internal links there are auto-prefixed by the `lp()` helper.
+
+### Adding a new language
+
+1. Add the locale to `locales` in `docs/.vitepress/config.ts` and add a `STR`
+   (plus optional `MD` / `SEO`) entry.
+2. Create `docs/<lang>/` mirroring the English structure (11 files).
+3. Add the locale code to the `LOCALES` regex in
+   `docs/.vitepress/theme/index.ts` so its homepage renders `AdvancedHome`,
+   and to the `LOCALES` list comment in `HomeActions.vue` if you want a
+   localized badge label.
+
 ## Deployment
 
 This documentation site can be deployed to GitHub Pages; the workflow includes a step to add a `CNAME` for the custom domain `sudoku.w3cub.com`.

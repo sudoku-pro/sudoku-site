@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-10-28
+
+### Added
+- Full internationalization with 6 new locales (English remains the root locale):
+  - Spanish (`/es/`), Simplified Chinese (`/zh-CN/`), Traditional Chinese (`/zh-TW/`),
+    Japanese (`/ja/`), German (`/de/`), French (`/fr/`)
+- Per-locale nav / sidebar / footer / outline labels and markdown container strings
+- Per-locale SEO metadata (title, description, Open Graph / Twitter cards)
+- Language switcher in the homepage navbar
+- Home page copy is now frontmatter-driven (`home:` block), so hero text,
+  section titles, testimonials, FAQ, CTA, and footer can be translated per locale
+  while English stays the fallback
+
+### Changed
+- `AdvancedHome.vue` reads all copy from the page frontmatter with English defaults
+- Internal links on the homepage are auto-prefixed with the active locale
+- `theme/index.ts` `Layout` is now a stateful component so the homepage re-renders
+  with the correct locale data on client-side navigation
+
 ## [1.0.0] - 2026-07-29
 
 ### Added

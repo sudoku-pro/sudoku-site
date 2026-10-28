@@ -77,4 +77,76 @@ features:
     details: Hints, pencil notes (auto-cleared), error checking, undo, daily challenges, statistics, 8 themes, iCloud sync, Game Center, and 25 languages.
     link: /guide/usage
     linkText: Learn more
+
+# ── Home page copy (everything below is per-locale overridable) ──────
+# Keys omitted here fall back to the English defaults hardcoded in
+# AdvancedHome.vue. Internal links are auto-prefixed with the locale.
+home:
+  floatingCards:
+    - Classic Logic
+    - Hints & Notes
+    - Daily Challenge
+  sections:
+    featuresTitle: Key Features
+    featuresSubtitle: Everything you need to play, master, and enjoy Sudoku
+    screenshotsTitle: Screenshots
+    screenshotsSubtitle: See Sudoku in action on iPhone, iPad, and Mac
+    testimonialsTitle: Loved by Players
+    testimonialsSubtitle: Real feedback from our community
+    faqTitle: Frequently Asked Questions
+    faqSubtitle: Quick answers for iPhone, iPad & Mac players
+  testimonials:
+    - text: The best Sudoku app I've used on mobile — clean interface, smooth controls, and I love the pencil notes feature for tricky puzzles.
+      name: Emma Wilson
+      role: Teacher
+    - text: Five difficulty levels keep me challenged, and the daily challenges are a perfect morning ritual. The themes are gorgeous too!
+      name: James Park
+      role: Engineer
+    - text: Finally an ad-free Sudoku that just works. iCloud sync means my progress is always there across my iPhone, iPad, and Mac.
+      name: Lisa Chen
+      role: Designer
+  faqs:
+    - question: Is Sudoku free?
+      answer: Check the App Store listing for current pricing. The app is a one-time purchase with no ads or in-app purchases.
+    - question: Does Sudoku work offline?
+      answer: Yes. The game is fully playable offline — no internet needed for gameplay. CloudKit sync and Game Center require internet when active, but core features work 100% offline.
+    - question: Is my game data synced?
+      answer: Yes! Your settings, statistics, and game saves sync via iCloud (CloudKit) across all your Apple devices. Start on iPhone, continue on Mac.
+    - question: Which devices are supported?
+      answer: Sudoku is a universal app for iPhone, iPad, and Mac with native controls and Retina graphics. Requires iOS/iPadOS 16.0+ and macOS 15.0 (Sequoia)+. One purchase works everywhere.
+    - question: Are there ads or in-app purchases?
+      answer: No. Sudoku is completely ad-free with no pop-ups or in-app purchases. Just pure, focused puzzle gameplay.
+  cta:
+    title: Ready to Play Sudoku?
+    description: Start solving puzzles, beat your best time, track your statistics, and enjoy the classic number puzzle — anytime, anywhere, completely offline.
+    primary: Get Started
+    primaryLink: /guide/installation
+    secondary: How to Play
+    secondaryLink: /guide/usage
+  footer:
+    tagline: Fill the grid. Sharpen your mind.
+    columns:
+      - heading: Product
+        links:
+          - text: App Store
+            link: /guide/installation
+          - text: Features
+            link: /guide/usage
+          - text: Installation
+            link: /guide/installation
+      - heading: Support
+        links:
+          - text: Guide
+            link: /guide/introduction
+          - text: FAQ
+            link: /guide/faq
+          - text: Troubleshooting
+            link: /guide/troubleshooting
+      - heading: Community
+        links:
+          - text: GitHub
+            link: https://github.com/sudoku-pro/sudoku-site
+          - text: Changelog
+            link: https://github.com/sudoku-pro/sudoku-site/blob/main/CHANGELOG.md
+    copyright: © 2026 Sudoku Project. Built with ❤️ for puzzle lovers.
 ---

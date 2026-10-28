@@ -4,7 +4,7 @@
     <nav class="navbar">
       <div class="nav-container">
         <div class="nav-brand">
-          <VPLink href="/" class="brand-link">
+          <VPLink :href="homeLink" class="brand-link">
             <img src="/logo.png" alt="Sudoku Logo" class="brand-logo" />
             <span class="brand-text">Sudoku</span>
           </VPLink>
@@ -13,6 +13,7 @@
           <div class="nav-links">
             <VPNavBarMenu />
           </div>
+          <VPNavBarTranslations class="nav-lang" />
           <VPSwitchAppearance class="nav-appearance" />
         </div>
       </div>
@@ -33,17 +34,14 @@
           </div>
           <div class="hero-visual">
             <div class="floating-elements">
-              <div class="floating-card card-1">
-                <div class="card-icon">🔢</div>
-                <div class="card-text">Classic Logic</div>
-              </div>
-              <div class="floating-card card-2">
-                <div class="card-icon">💡</div>
-                <div class="card-text">Hints & Notes</div>
-              </div>
-              <div class="floating-card card-3">
-                <div class="card-icon">🏆</div>
-                <div class="card-text">Daily Challenge</div>
+              <div
+                v-for="(card, i) in home.floatingCards"
+                :key="i"
+                class="floating-card"
+                :class="`card-${i + 1}`"
+              >
+                <div class="card-icon">{{ floatingIcons[i % floatingIcons.length] }}</div>
+                <div class="card-text">{{ card }}</div>
               </div>
             </div>
             <div class="hero-image">
@@ -59,8 +57,8 @@
     <section class="features-section">
       <div class="features-container">
         <div class="section-header">
-          <h2 class="section-title">Key Features</h2>
-          <p class="section-subtitle">Everything you need to play, master, and enjoy Sudoku</p>
+          <h2 class="section-title">{{ home.sections.featuresTitle }}</h2>
+          <p class="section-subtitle">{{ home.sections.featuresSubtitle }}</p>
         </div>
         <div class="features-grid">
           <div v-for="(feature, index) in data.features" :key="feature.title"
@@ -72,7 +70,7 @@
             </div>
             <h3 class="feature-title">{{ feature.title }}</h3>
             <p class="feature-description">{{ feature.details }}</p>
-            <a v-if="feature.link" :href="feature.link" class="feature-link">{{ feature.linkText }}</a>
+            <a v-if="feature.link" :href="withBase(lp(feature.link))" class="feature-link">{{ feature.linkText }}</a>
           </div>
         </div>
       </div>
@@ -82,20 +80,20 @@
     <section class="screenshots-section">
       <div class="screenshots-container">
         <div class="section-header">
-          <h2 class="section-title">Screenshots</h2>
-          <p class="section-subtitle">See Sudoku in action on iPhone, iPad, and Mac</p>
+          <h2 class="section-title">{{ home.sections.screenshotsTitle }}</h2>
+          <p class="section-subtitle">{{ home.sections.screenshotsSubtitle }}</p>
         </div>
         <div class="screenshots-grid">
           <div class="screenshot-card">
-            <img :src="withBase('/screenshot-iphone-main.png')" alt="Sudoku on iPhone" />
+            <img :src="withBase('/screenshot-iphone-main.png')" :alt="`Sudoku · iPhone`" />
             <p class="screenshot-caption">iPhone</p>
           </div>
           <div class="screenshot-card">
-            <img :src="withBase('/screenshot-ipad-main.png')" alt="Sudoku on iPad" />
+            <img :src="withBase('/screenshot-ipad-main.png')" :alt="`Sudoku · iPad`" />
             <p class="screenshot-caption">iPad</p>
           </div>
           <div class="screenshot-card wide">
-            <img :src="withBase('/screenshot-mac-difficulty.png')" alt="Sudoku difficulty levels on Mac" />
+            <img :src="withBase('/screenshot-mac-difficulty.png')" :alt="`Sudoku · Mac`" />
             <p class="screenshot-caption">Mac</p>
           </div>
         </div>
@@ -106,40 +104,18 @@
     <section class="testimonials-section">
       <div class="testimonials-container">
         <div class="section-header">
-          <h2 class="section-title">Loved by Players</h2>
-          <p class="section-subtitle">Real feedback from our community</p>
+          <h2 class="section-title">{{ home.sections.testimonialsTitle }}</h2>
+          <p class="section-subtitle">{{ home.sections.testimonialsSubtitle }}</p>
         </div>
         <div class="testimonials-grid">
-          <div class="testimonial-card">
+          <div v-for="t in home.testimonials" :key="t.name" class="testimonial-card">
             <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">The best Sudoku app I've used on mobile — clean interface, smooth controls, and I love the pencil notes feature for tricky puzzles.</p>
+            <p class="testimonial-text">{{ t.text }}</p>
             <div class="testimonial-author">
-              <div class="author-avatar">E</div>
+              <div class="author-avatar">{{ t.name.charAt(0) }}</div>
               <div class="author-info">
-                <div class="author-name">Emma Wilson</div>
-                <div class="author-role">Teacher</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">Five difficulty levels keep me challenged, and the daily challenges are a perfect morning ritual. The themes are gorgeous too!</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">J</div>
-              <div class="author-info">
-                <div class="author-name">James Park</div>
-                <div class="author-role">Engineer</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div class="testimonial-quote">"</div>
-            <p class="testimonial-text">Finally an ad-free Sudoku that just works. iCloud sync means my progress is always there across my iPhone, iPad, and Mac.</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">L</div>
-              <div class="author-info">
-                <div class="author-name">Lisa Chen</div>
-                <div class="author-role">Designer</div>
+                <div class="author-name">{{ t.name }}</div>
+                <div class="author-role">{{ t.role }}</div>
               </div>
             </div>
           </div>
@@ -151,11 +127,11 @@
     <section class="faq-section">
       <div class="faq-container">
         <div class="section-header">
-          <h2 class="section-title">Frequently Asked Questions</h2>
-          <p class="section-subtitle">Quick answers for iPhone, iPad & Mac players</p>
+          <h2 class="section-title">{{ home.sections.faqTitle }}</h2>
+          <p class="section-subtitle">{{ home.sections.faqSubtitle }}</p>
         </div>
         <div class="faq-grid">
-          <div v-for="faq in faqs" :key="faq.question" class="faq-item">
+          <div v-for="faq in home.faqs" :key="faq.question" class="faq-item">
             <details class="faq-details">
               <summary class="faq-question">{{ faq.question }}</summary>
               <div class="faq-answer">{{ faq.answer }}</div>
@@ -169,11 +145,11 @@
     <section class="cta-section">
       <div class="cta-container">
         <div class="cta-content">
-          <h2 class="cta-title">Ready to Play Sudoku?</h2>
-          <p class="cta-description">Start solving puzzles, beat your best time, track your statistics, and enjoy the classic number puzzle — anytime, anywhere, completely offline.</p>
+          <h2 class="cta-title">{{ home.cta.title }}</h2>
+          <p class="cta-description">{{ home.cta.description }}</p>
           <div class="cta-actions">
-            <a href="/guide/installation" class="btn btn-primary">Get Started</a>
-            <a href="/guide/usage" class="btn btn-secondary">How to Play</a>
+            <a :href="withBase(lp(home.cta.primaryLink))" class="btn btn-primary">{{ home.cta.primary }}</a>
+            <a :href="withBase(lp(home.cta.secondaryLink))" class="btn btn-secondary">{{ home.cta.secondary }}</a>
           </div>
         </div>
       </div>
@@ -185,30 +161,24 @@
         <div class="footer-content">
           <div class="footer-brand">
             <div class="footer-logo">Sudoku</div>
-            <p class="footer-tagline">Fill the grid. Sharpen your mind.</p>
+            <p class="footer-tagline">{{ home.footer.tagline }}</p>
           </div>
           <div class="footer-links">
-            <div class="footer-column">
-              <h4 class="footer-heading">Product</h4>
-              <a href="/guide/installation" class="footer-link">App Store</a>
-              <a href="/guide/usage" class="footer-link">Features</a>
-              <a href="/guide/installation" class="footer-link">Installation</a>
-            </div>
-            <div class="footer-column">
-              <h4 class="footer-heading">Support</h4>
-              <a href="/guide/introduction" class="footer-link">Guide</a>
-              <a href="/guide/faq" class="footer-link">FAQ</a>
-              <a href="/guide/troubleshooting" class="footer-link">Troubleshooting</a>
-            </div>
-            <div class="footer-column">
-              <h4 class="footer-heading">Community</h4>
-              <a href="https://github.com/sudoku-pro/sudoku-site" class="footer-link">GitHub</a>
-              <a href="https://github.com/sudoku-pro/sudoku-site/blob/main/CHANGELOG.md" class="footer-link">Changelog</a>
+            <div v-for="col in home.footer.columns" :key="col.heading" class="footer-column">
+              <h4 class="footer-heading">{{ col.heading }}</h4>
+              <a
+                v-for="link in col.links"
+                :key="link.text"
+                :href="isExternal(link.link) ? link.link : withBase(lp(link.link))"
+                class="footer-link"
+                :target="isExternal(link.link) ? '_blank' : undefined"
+                :rel="isExternal(link.link) ? 'noopener noreferrer' : undefined"
+              >{{ link.text }}</a>
             </div>
           </div>
         </div>
         <div class="footer-bottom">
-          <p class="footer-copyright">© 2026 Sudoku Project. Built with ❤️ for puzzle lovers.</p>
+          <p class="footer-copyright">{{ home.footer.copyright }}</p>
         </div>
       </div>
     </footer>
@@ -216,18 +186,134 @@
 </template>
 
 <script setup lang="ts">
-import { withBase } from 'vitepress'
+import { computed } from 'vue'
+import { withBase, useData } from 'vitepress'
 import HomeActions from './HomeActions.vue'
 import { VPLink } from 'vitepress/theme'
 import VPNavBarMenu from 'vitepress/dist/client/theme-default/components/VPNavBarMenu.vue'
 import VPSwitchAppearance from 'vitepress/dist/client/theme-default/components/VPSwitchAppearance.vue'
+import VPNavBarTranslations from 'vitepress/dist/client/theme-default/components/VPNavBarTranslations.vue'
 
 interface Props {
   data: any
 }
+const props = defineProps<Props>()
 
-defineProps<Props>()
+const { lang } = useData()
 
+// ── English defaults (used by the root / English homepage) ─────────
+// Everything below can be overridden per-locale from the homepage
+// frontmatter (`home:` block in docs/<lang>/index.md).
+const DEFAULT_FLOATING = ['Classic Logic', 'Hints & Notes', 'Daily Challenge']
+
+// Emoji shown next to each floating card — not translated.
+const floatingIcons = ['🔢', '💡', '🏆']
+
+const DEFAULT_SECTIONS = {
+  featuresTitle: 'Key Features',
+  featuresSubtitle: 'Everything you need to play, master, and enjoy Sudoku',
+  screenshotsTitle: 'Screenshots',
+  screenshotsSubtitle: 'See Sudoku in action on iPhone, iPad, and Mac',
+  testimonialsTitle: 'Loved by Players',
+  testimonialsSubtitle: 'Real feedback from our community',
+  faqTitle: 'Frequently Asked Questions',
+  faqSubtitle: 'Quick answers for iPhone, iPad & Mac players',
+}
+
+const DEFAULT_TESTIMONIALS = [
+  {
+    text: "The best Sudoku app I've used on mobile — clean interface, smooth controls, and I love the pencil notes feature for tricky puzzles.",
+    name: 'Emma Wilson',
+    role: 'Teacher',
+  },
+  {
+    text: 'Five difficulty levels keep me challenged, and the daily challenges are a perfect morning ritual. The themes are gorgeous too!',
+    name: 'James Park',
+    role: 'Engineer',
+  },
+  {
+    text: 'Finally an ad-free Sudoku that just works. iCloud sync means my progress is always there across my iPhone, iPad, and Mac.',
+    name: 'Lisa Chen',
+    role: 'Designer',
+  },
+]
+
+const DEFAULT_FAQS = [
+  {
+    question: 'Is Sudoku free?',
+    answer: 'Check the App Store listing for current pricing. The app is a one-time purchase with no ads or in-app purchases.',
+  },
+  {
+    question: 'Does Sudoku work offline?',
+    answer: 'Yes. The game is fully playable offline — no internet needed for gameplay. CloudKit sync and Game Center require internet when active, but core features work 100% offline.',
+  },
+  {
+    question: 'Is my game data synced?',
+    answer: 'Yes! Your settings, statistics, and game saves sync via iCloud (CloudKit) across all your Apple devices. Start on iPhone, continue on Mac.',
+  },
+  {
+    question: 'Which devices are supported?',
+    answer: 'Sudoku is a universal app for iPhone, iPad, and Mac with native controls and Retina graphics. Requires iOS/iPadOS 16.0+ and macOS 15.0 (Sequoia)+. One purchase works everywhere.',
+  },
+  {
+    question: 'Are there ads or in-app purchases?',
+    answer: 'No. Sudoku is completely ad-free with no pop-ups or in-app purchases. Just pure, focused puzzle gameplay.',
+  },
+]
+
+const DEFAULT_CTA = {
+  title: 'Ready to Play Sudoku?',
+  description: 'Start solving puzzles, beat your best time, track your statistics, and enjoy the classic number puzzle — anytime, anywhere, completely offline.',
+  primary: 'Get Started',
+  primaryLink: '/guide/installation',
+  secondary: 'How to Play',
+  secondaryLink: '/guide/usage',
+}
+
+const DEFAULT_FOOTER = {
+  tagline: 'Fill the grid. Sharpen your mind.',
+  columns: [
+    {
+      heading: 'Product',
+      links: [
+        { text: 'App Store', link: '/guide/installation' },
+        { text: 'Features', link: '/guide/usage' },
+        { text: 'Installation', link: '/guide/installation' },
+      ],
+    },
+    {
+      heading: 'Support',
+      links: [
+        { text: 'Guide', link: '/guide/introduction' },
+        { text: 'FAQ', link: '/guide/faq' },
+        { text: 'Troubleshooting', link: '/guide/troubleshooting' },
+      ],
+    },
+    {
+      heading: 'Community',
+      links: [
+        { text: 'GitHub', link: 'https://github.com/sudoku-pro/sudoku-site' },
+        { text: 'Changelog', link: 'https://github.com/sudoku-pro/sudoku-site/blob/main/CHANGELOG.md' },
+      ],
+    },
+  ],
+  copyright: '© 2026 Sudoku Project. Built with ❤️ for puzzle lovers.',
+}
+
+// All home page copy comes from the markdown frontmatter (`data.home`),
+// falling back to the English defaults above so the English site keeps
+// working unchanged.
+const home = computed(() => {
+  const d = props.data?.home || {}
+  return {
+    floatingCards: d.floatingCards || DEFAULT_FLOATING,
+    sections: { ...DEFAULT_SECTIONS, ...(d.sections || {}) },
+    testimonials: d.testimonials || DEFAULT_TESTIMONIALS,
+    faqs: d.faqs || DEFAULT_FAQS,
+    cta: { ...DEFAULT_CTA, ...(d.cta || {}) },
+    footer: d.footer || DEFAULT_FOOTER,
+  }
+})
 
 // Feature colors for icons
 const featureColors = [
@@ -239,29 +325,23 @@ const featureColors = [
   '#06b6d4'  // cyan
 ]
 
-// FAQ data
-const faqs = [
-  {
-    question: "Is Sudoku free?",
-    answer: "Check the App Store listing for current pricing. The app is a one-time purchase with no ads or in-app purchases."
-  },
-  {
-    question: "Does Sudoku work offline?",
-    answer: "Yes. The game is fully playable offline — no internet needed for gameplay. CloudKit sync and Game Center require internet when active, but core features work 100% offline."
-  },
-  {
-    question: "Is my game data synced?",
-    answer: "Yes! Your settings, statistics, and game saves sync via iCloud (CloudKit) across all your Apple devices. Start on iPhone, continue on Mac."
-  },
-  {
-    question: "Which devices are supported?",
-    answer: "Sudoku is a universal app for iPhone, iPad, and Mac with native controls and Retina graphics. Requires iOS/iPadOS 16.0+ and macOS 15.0 (Sequoia)+. One purchase works everywhere."
-  },
-  {
-    question: "Are there ads or in-app purchases?",
-    answer: "No. Sudoku is completely ad-free with no pop-ups or in-app purchases. Just pure, focused puzzle gameplay."
-  }
-]
+function isExternal(p: string): boolean {
+  return /^https?:\/\//.test(p) || p.startsWith('mailto:')
+}
+
+// Prefix a root-relative internal link with the current locale segment.
+function lp(p: string): string {
+  if (!p) return p
+  if (isExternal(p) || p.startsWith('#')) return p
+  if (!lang.value || lang.value === 'en') return p
+  if (p.startsWith('/' + lang.value + '/')) return p
+  return '/' + lang.value + p
+}
+
+// Locale-aware home link for the brand logo.
+const homeLink = computed(() =>
+  !lang.value || lang.value === 'en' ? '/' : `/${lang.value}/`
+)
 </script>
 
 <style scoped>
@@ -334,6 +414,11 @@ const faqs = [
 }
 
 .nav-appearance {
+  display: flex;
+  align-items: center;
+}
+
+.nav-lang {
   display: flex;
   align-items: center;
 }

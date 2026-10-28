@@ -1,0 +1,149 @@
+---
+layout: home
+
+hero:
+  name: "Sudoku"
+  text: "定番の数字パズルを、完璧な仕上がりで"
+  tagline: "5 段階の難易度 · ヒント＆鉛筆メモ · デイリーチャレンジ · 8 種類のテーマ · 完全オフラインプレイ · 広告ゼロ · iPhone、iPad、Mac"
+  image:
+    src: /hero-illustration.png
+    alt: Sudoku のゲームボード
+  actions:
+    - theme: brand
+      text: はじめる
+      link: /ja/guide/introduction
+    - theme: alt
+      text: ダウンロード
+      link: /ja/guide/installation
+
+features:
+  - icon:
+      light: /icons/eye.svg
+      dark: /icons/eye-dark.svg
+      alt: 目
+      width: "24"
+      height: "24"
+    title: 本格的なゲームプレイ
+    details: 定番ルールに忠実 — タップして数字を置き、候補には鉛筆メモを使い、論理の力だけで解答へ導きます。
+    link: /guide/usage
+    linkText: 遊び方を見る
+  - icon:
+      light: /icons/layers.svg
+      dark: /icons/layers-dark.svg
+      alt: レイヤー
+      width: "24"
+      height: "24"
+    title: 5 段階の難易度
+    details: やさしい（初期配置マス 45）からマスター（同 24）まで — 遊ぶたびにユニークなパズルを生成します。あらゆるデバイスに最適化。
+    link: /guide/usage
+    linkText: 詳しく見る
+  - icon:
+      light: /icons/sparkles.svg
+      dark: /icons/sparkles-dark.svg
+      alt: きらめき
+      width: "24"
+      height: "24"
+    title: どこでも遊べる — オフライン対応
+    details: 基本のゲームプレイは 100% オフライン。インターネット接続は不要です。飛行機の中でも、地下鉄でも、どんな場所でもパズルがいつでも待っています。
+    link: /guide/usage
+    linkText: 詳しく見る
+  - icon:
+      light: /icons/camera.svg
+      dark: /icons/camera-dark.svg
+      alt: カメラ
+      width: "24"
+      height: "24"
+    title: クリーンで広告なし
+    details: 中断もポップアップも広告も App 内課金もありません。美しいインターフェースで、数字パズルの楽しさだけに集中できます。
+    link: /guide/introduction
+    linkText: Sudoku について
+  - icon:
+      light: /icons/frame.svg
+      dark: /icons/frame-dark.svg
+      alt: フレーム
+      width: "24"
+      height: "24"
+    title: ユニバーサルデザイン
+    details: iPhone、iPad、Mac 向けに、ネイティブ操作と精細な Retina ディスプレイ表示で作り上げました。1 回の購入で全プラットフォームに対応します。
+    link: /guide/introduction
+    linkText: Sudoku について
+  - icon:
+      light: /icons/zap.svg
+      dark: /icons/zap-dark.svg
+      alt: 稲妻
+      width: "24"
+      height: "24"
+    title: スマートな機能
+    details: ヒント、鉛筆メモ（自動消去）、誤りチェック、元に戻す、デイリーチャレンジ、統計、8 種類のテーマ、iCloud 同期、Game Center、25 言語に対応。
+    link: /guide/usage
+    linkText: 詳しく見る
+
+home:
+  floatingCards:
+    - 定番ロジック
+    - ヒント＆鉛筆メモ
+    - デイリーチャレンジ
+  sections:
+    featuresTitle: 主な機能
+    featuresSubtitle: 数独を遊び、極め、楽しむために必要なすべて
+    screenshotsTitle: スクリーンショット
+    screenshotsSubtitle: iPhone、iPad、Mac で動く Sudoku をご覧ください
+    testimonialsTitle: プレイヤーに愛される Sudoku
+    testimonialsSubtitle: コミュニティから届いた実際の声
+    faqTitle: よくある質問
+    faqSubtitle: iPhone、iPad、Mac のプレイヤー向けの簡潔な回答
+  testimonials:
+    - text: モバイルで使った中で最高の数独アプリです — インターフェースがすっきりしていて操作も滑らか。難しい問題のための鉛筆メモ機能が特に気に入っています。
+      name: Emma Wilson
+      role: 教師
+    - text: 5 段階の難易度で常に手応えがあり、デイリーチャレンジは朝の日課にぴったりです。テーマもとても美しい！
+      name: James Park
+      role: エンジニア
+    - text: 広告なしでちゃんと動く数独にようやく出会えました。iCloud 同期のおかげで、iPhone、iPad、Mac のどこでも進行状況が保たれます。
+      name: Lisa Chen
+      role: デザイナー
+  faqs:
+    - question: Sudoku は無料ですか？
+      answer: 現在の価格は App Store の掲載情報をご確認ください。本アプリは買い切りで、広告や App 内課金はありません。
+    - question: Sudoku はオフラインで動作しますか？
+      answer: はい。ゲームは完全にオフラインでプレイできます — プレイにインターネット接続は必要ありません。CloudKit 同期と Game Center は有効時にインターネットが必要ですが、基本機能は 100% オフラインで動作します。
+    - question: ゲームデータは同期されますか？
+      answer: はい！設定、統計、ゲームのセーブデータは iCloud（CloudKit）を通じてすべての Apple デバイス間で同期されます。iPhone で始めて、Mac で続きを遊べます。
+    - question: 対応しているデバイスを教えてください。
+      answer: Sudoku は iPhone、iPad、Mac に対応したユニバーサルアプリで、ネイティブ操作と Retina 表示に対応しています。iOS/iPadOS 16.0 以降および macOS 15.0（Sequoia）以降が必要です。1 回の購入でどこでも使えます。
+    - question: 広告や App 内課金はありますか？
+      answer: ありません。Sudoku は完全に広告なしで、ポップアップも App 内課金もありません。純粋にパズルだけに集中できます。
+  cta:
+    title: さあ、数独をはじめましょう
+    description: パズルを解き始めて、自己ベストを更新し、統計を記録しながら、定番の数字パズルを楽しみましょう — いつでも、どこでも、完全オフラインで。
+    primary: はじめる
+    primaryLink: /guide/installation
+    secondary: 遊び方
+    secondaryLink: /guide/usage
+  footer:
+    tagline: マスを埋めて、頭を磨こう。
+    columns:
+      - heading: プロダクト
+        links:
+          - text: App Store
+            link: /guide/installation
+          - text: 機能
+            link: /guide/usage
+          - text: インストール
+            link: /guide/installation
+      - heading: サポート
+        links:
+          - text: ガイド
+            link: /guide/introduction
+          - text: よくある質問
+            link: /guide/faq
+          - text: トラブルシューティング
+            link: /guide/troubleshooting
+      - heading: コミュニティ
+        links:
+          - text: GitHub
+            link: https://github.com/sudoku-pro/sudoku-site
+          - text: 変更履歴
+            link: https://github.com/sudoku-pro/sudoku-site/blob/main/CHANGELOG.md
+    copyright: © 2026 Sudoku Project. パズル好きのために心を込めて作りました。
+---
